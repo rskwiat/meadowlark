@@ -1,0 +1,23 @@
+{
+  "name": "meadowlark",
+  "version": "0.0.0",
+  "description": "Built with Bootstrap / Node JS",
+  "main": "meadowlark.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rskwiat/meadowlark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rskwiat/meadowlark/issues"
+  },
+  "homepage": "https://github.com/rskwiat/meadowlark",
+  "dependencies": {
+    "express": "^4.8.0",
+    "express3-handlebars": "^0.5.1"
+  }
+}
