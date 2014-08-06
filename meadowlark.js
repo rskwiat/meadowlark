@@ -8,8 +8,9 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static(__dirname + '/public'));
-
 app.set('port', process.env.PORT || 3001 );
+
+var fortune = require('./lib/fortune.js');
 
 
 //Home and About Pages
@@ -18,8 +19,8 @@ app.get('/', function(req,res){
 });
 
 app.get('/about', function(req,res){
-    var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-    res.render('about', { fortune: randomFortune });
+    res.render('about', { fortune: fortune.getFortune()
+    });
 });
 
 
@@ -35,18 +36,6 @@ app.use(function(err,req,res,next){
     res.status(500);
     res.render('500');
 });
-
-//fortune cookie
-
-var fortunes = [
-    "Conquer your fears or they will conquer you.",
-    "River needs Springs.",
-    "Do not fear what you don't know.",
-    "You will have a pleasant surpise.",
-    "Whenever possible keep is simple.",
-    "4 8 15 16 23 42"
-];
-
 
 app.listen(app.get('port'), function(){
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
