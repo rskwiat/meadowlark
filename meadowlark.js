@@ -12,6 +12,12 @@ app.set('port', process.env.PORT || 3001 );
 
 var fortune = require('./lib/fortune.js');
 
+//Testing Modules
+app.use(function(req,res,next){
+    res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
+    next();
+});
+
 
 //Home and About Pages
 app.get('/', function(req,res){
@@ -19,10 +25,21 @@ app.get('/', function(req,res){
 });
 
 app.get('/about', function(req,res){
-    res.render('about', { fortune: fortune.getFortune()
+    res.render('about', {
+        fortune: fortune.getFortune(),
+        pageTestScript: '/qa/tests-about.js'
     });
 });
 
+//Tour Routes
+
+app.get('/tours/hood-river', function(req,res){
+    res.render('tours/hood-river');
+});
+
+app.get('/tours/request-group-rate', function(req,res){
+    res.render('tours/request-group-rate');
+});
 
 //custom 404 page
 app.use(function(req,res){
